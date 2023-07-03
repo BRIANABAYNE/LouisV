@@ -9,21 +9,22 @@
 /* Begin PBXBuildFile section */
 		3ADB1C112A5328AE00403C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB1C102A5328AE00403C17 /* AppDelegate.swift */; };
 		3ADB1C132A5328AE00403C17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */; };
-		3ADB1C152A5328AE00403C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB1C142A5328AE00403C17 /* ViewController.swift */; };
 		3ADB1C182A5328AE00403C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB1C162A5328AE00403C17 /* Main.storyboard */; };
 		3ADB1C1A2A5328AF00403C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB1C192A5328AF00403C17 /* Assets.xcassets */; };
 		3ADB1C1D2A5328AF00403C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB1C1B2A5328AF00403C17 /* LaunchScreen.storyboard */; };
+		3ADB1C272A53307200403C17 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3ADB1C262A53307200403C17 /* FirebaseFirestore */; };
+		3ADB1C292A5337C400403C17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB1C282A5337C400403C17 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3ADB1C0D2A5328AE00403C17 /* LouisV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LouisV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADB1C102A5328AE00403C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3ADB1C142A5328AE00403C17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3ADB1C172A5328AE00403C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3ADB1C192A5328AF00403C17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3ADB1C1C2A5328AF00403C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3ADB1C1E2A5328AF00403C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ADB1C282A5337C400403C17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADB1C272A53307200403C17 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +58,23 @@
 		3ADB1C0F2A5328AE00403C17 /* LouisV1 */ = {
 			isa = PBXGroup;
 			children = (
-				3ADB1C102A5328AE00403C17 /* AppDelegate.swift */,
-				3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */,
-				3ADB1C142A5328AE00403C17 /* ViewController.swift */,
+				3ADB1C282A5337C400403C17 /* GoogleService-Info.plist */,
+				3ADB1C242A5329AA00403C17 /* SupportingFiles */,
 				3ADB1C162A5328AE00403C17 /* Main.storyboard */,
-				3ADB1C192A5328AF00403C17 /* Assets.xcassets */,
 				3ADB1C1B2A5328AF00403C17 /* LaunchScreen.storyboard */,
-				3ADB1C1E2A5328AF00403C17 /* Info.plist */,
 			);
 			path = LouisV1;
+			sourceTree = "<group>";
+		};
+		3ADB1C242A5329AA00403C17 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3ADB1C102A5328AE00403C17 /* AppDelegate.swift */,
+				3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */,
+				3ADB1C192A5328AF00403C17 /* Assets.xcassets */,
+				3ADB1C1E2A5328AF00403C17 /* Info.plist */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +93,9 @@
 			dependencies = (
 			);
 			name = LouisV1;
+			packageProductDependencies = (
+				3ADB1C262A53307200403C17 /* FirebaseFirestore */,
+			);
 			productName = LouisV1;
 			productReference = 3ADB1C0D2A5328AE00403C17 /* LouisV1.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +124,9 @@
 				Base,
 			);
 			mainGroup = 3ADB1C042A5328AE00403C17;
+			packageReferences = (
+				3ADB1C252A53307200403C17 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 3ADB1C0E2A5328AE00403C17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ADB1C1D2A5328AF00403C17 /* LaunchScreen.storyboard in Resources */,
+				3ADB1C292A5337C400403C17 /* GoogleService-Info.plist in Resources */,
 				3ADB1C1A2A5328AF00403C17 /* Assets.xcassets in Resources */,
 				3ADB1C182A5328AE00403C17 /* Main.storyboard in Resources */,
 			);
@@ -138,7 +155,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ADB1C152A5328AE00403C17 /* ViewController.swift in Sources */,
 				3ADB1C112A5328AE00403C17 /* AppDelegate.swift in Sources */,
 				3ADB1C132A5328AE00403C17 /* SceneDelegate.swift in Sources */,
 			);
@@ -289,7 +305,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5MZCV93J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LouisV1/Info.plist;
+				INFOPLIST_FILE = LouisV1/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +333,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5MZCV93J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LouisV1/Info.plist;
+				INFOPLIST_FILE = LouisV1/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -358,6 +374,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3ADB1C252A53307200403C17 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3ADB1C262A53307200403C17 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3ADB1C252A53307200403C17 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3ADB1C052A5328AE00403C17 /* Project object */;
 }
