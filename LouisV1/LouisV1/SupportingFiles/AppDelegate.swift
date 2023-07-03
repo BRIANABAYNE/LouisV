@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
+        let db = Firestore.firestore()
+        
+        
+        let bag = Bag(name: "DC Strap", price: 28608.0, season: "2023", location: "Paris", gender: "Male")
+        db.collection("bags").document(bag.uuid).setData(bag.bagDictionaryReprentation)
+   
+
+        
         // Override point for customization after application launch.
         return true
     }
