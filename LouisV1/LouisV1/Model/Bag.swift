@@ -6,26 +6,47 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-
-struct Bag {
-    
+struct Bag: Codable {
+    @DocumentID var id: String? // 
     let name: String
     let price: Double
     let season: String
     let location: String
     let gender: String
-    let uuid: String = UUID().uuidString
-// For setting the data - Writing 
-    var bagDictionaryReprentation: [String: AnyHashable] {
-        
-        ["name": self.name,
-         "price": self.price,
-         "season": self.season,
-         "location": self.location,
-         "gender":self.gender,
-         "uuid":self.uuid]
-        
-    }
+    let collectionType: String 
+    let size: Size
+    let colors: [Color]
+}
+
+struct Size: Codable {
+    
+    var small: String
+    var medium: String
+    var large: String
+}
+
+
+struct Color: Codable {
+    
+    var colorName: String
     
 }
+
+
+
+
+//DatingApp
+//
+//let name:
+//let occupation:
+//let age:
+//let bio:
+//let location:
+//let genderPrefernces:
+//let typeOfRelationship:
+
+
+
+
