@@ -49,18 +49,5 @@ struct BagDetailViewModel {
 //
 //    }
     
-    func fetchallBags() {
-        let db = Firestore.firestore()
-        db.collection("Bags").getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else { return }
-            
-            do {
-                let bagArray = try documents.compactMap({ try $0.data(as: Bag.self)})
-                print(bagArray)
-            } catch {
-              
-            }
-        }
-        
-        } // end of fetch
+    
     }

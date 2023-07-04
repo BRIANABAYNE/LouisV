@@ -10,6 +10,7 @@
 		3A61E3772A546F05009BB911 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3A61E3762A546F05009BB911 /* FirebaseFirestoreSwift */; };
 		3A61E3792A548EF2009BB911 /* BagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61E3782A548EF2009BB911 /* BagListTableViewController.swift */; };
 		3A61E37B2A548F31009BB911 /* BagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61E37A2A548F31009BB911 /* BagTableViewCell.swift */; };
+		3A61E37E2A549103009BB911 /* BagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61E37D2A549103009BB911 /* BagListViewModel.swift */; };
 		3ADB1C112A5328AE00403C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB1C102A5328AE00403C17 /* AppDelegate.swift */; };
 		3ADB1C132A5328AE00403C17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */; };
 		3ADB1C182A5328AE00403C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADB1C162A5328AE00403C17 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		3A61E3782A548EF2009BB911 /* BagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagListTableViewController.swift; sourceTree = "<group>"; };
 		3A61E37A2A548F31009BB911 /* BagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagTableViewCell.swift; sourceTree = "<group>"; };
+		3A61E37D2A549103009BB911 /* BagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagListViewModel.swift; sourceTree = "<group>"; };
 		3ADB1C0D2A5328AE00403C17 /* LouisV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LouisV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADB1C102A5328AE00403C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADB1C122A5328AE00403C17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A61E37C2A549054009BB911 /* BagList */ = {
+			isa = PBXGroup;
+			children = (
+				3A61E37D2A549103009BB911 /* BagListViewModel.swift */,
+			);
+			path = BagList;
 			sourceTree = "<group>";
 		};
 		3ADB1C042A5328AE00403C17 = {
@@ -112,8 +122,9 @@
 			children = (
 				3ADB1C2D2A5343FC00403C17 /* BagDetailViewController.swift */,
 				3ADB1C302A534A5C00403C17 /* BagDetailViewModel.swift */,
-				3A61E3782A548EF2009BB911 /* BagListTableViewController.swift */,
+				3A61E37C2A549054009BB911 /* BagList */,
 				3A61E37A2A548F31009BB911 /* BagTableViewCell.swift */,
+				3A61E3782A548EF2009BB911 /* BagListTableViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -200,6 +211,7 @@
 				3A61E3792A548EF2009BB911 /* BagListTableViewController.swift in Sources */,
 				3ADB1C312A534A5C00403C17 /* BagDetailViewModel.swift in Sources */,
 				3ADB1C2E2A5343FC00403C17 /* BagDetailViewController.swift in Sources */,
+				3A61E37E2A549103009BB911 /* BagListViewModel.swift in Sources */,
 				3ADB1C2B2A533D3C00403C17 /* Bag.swift in Sources */,
 				3A61E37B2A548F31009BB911 /* BagTableViewCell.swift in Sources */,
 				3ADB1C112A5328AE00403C17 /* AppDelegate.swift in Sources */,

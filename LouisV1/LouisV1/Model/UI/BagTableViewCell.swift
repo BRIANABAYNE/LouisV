@@ -9,15 +9,22 @@ import UIKit
 
 class BagTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var bagNameLabel: UILabel!
+    
+    @IBOutlet weak var bagPriceLabel: UILabel!
+    
+    @IBOutlet weak var bagGenderLabel: UILabel!
+    
+    // MARK: - Methods
+    func configure(with bag: Bag?) {
+        guard let bag = bag else { return } // We are
+        bagNameLabel.text = bag.name
+        bagPriceLabel.text = "\(bag.price)"
+        bagGenderLabel.text = bag.gender
+        
+        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+} // end of class
 
-        // Configure the view for the selected state
-    }
-
-}

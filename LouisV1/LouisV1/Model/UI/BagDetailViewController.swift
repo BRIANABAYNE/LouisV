@@ -29,7 +29,7 @@ class BagDetailViewController: UIViewController {
         super.viewDidLoad()
         // calling 
         viewModel = BagDetailViewModel()
-        viewModel.fetchallBags() // Testing but will want to delete 
+        
     }
     
 
