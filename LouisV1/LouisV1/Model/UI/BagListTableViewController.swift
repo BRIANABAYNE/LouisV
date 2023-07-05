@@ -15,15 +15,19 @@ class BagListTableViewController: UITableViewController {
     
     
     // MARK: - Lifecycles
-    override func viewDidLoad() {
+    override func viewDidLoad() { //// Will trigger first 1
         super.viewDidLoad()
-        viewModel = BagListViewModel(injectedDelegate: BagListViewModelDelegate)
+        viewModel = BagListViewModel(injectedDelegate: self)  /// Will trigger next 2 - init a bagList Viewmodel - Cap is an actaul Data type () init
        // viewModel = BagListViewModel()
       //  viewModel.delegate = self // Hiring the delegate to do the job duties we need. 5
        // viewModel.fetchallBags()
     }
     
     // MARK: - Table view data source
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.fetchallBags()
+    }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +52,7 @@ class BagListTableViewController: UITableViewController {
 // Posting the open job 3
 extension BagListTableViewController: BagListViewModelDelegate {
     // This job description 4
-    func successfullyLoadedData() {
+    func successfullyLoadedData() { // Then this will run 
         DispatchQueue.main.async { // ON THE MAIN THREAD
             self.tableView.reloadData()
         }

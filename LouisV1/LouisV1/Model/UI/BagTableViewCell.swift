@@ -22,8 +22,6 @@ class BagTableViewCell: UITableViewCell {
         bagNameLabel.text = bag.name
         bagPriceLabel.text = "\(bag.price)"
         bagGenderLabel.text = bag.gender
-        
-        
     }
 
 } // end of class

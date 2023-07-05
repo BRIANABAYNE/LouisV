@@ -23,23 +23,23 @@ class BagListViewModel {
     weak var delegate: BagListViewModelDelegate?
     
     
-    // Dependency Injection - Why? To make our code easier to test. 
+    // Dependency Injection - Why? To make our code easier to test. /// This is being called 3rd. from the viewmodel bag. The injected delegate, When it get triggered it will then trigger the body.
     init(injectedDelegate:BagListViewModelDelegate) {
         self.delegate = injectedDelegate // hiring the person
-        fetchallBags() // duty of the person hired 
+        fetchallBags() // duty of the person hired  /// This is calling the fetch all bags and will start to trigger the first libe in the fetchAll bags
     }
     
     // Goal - fetch all bags
     
     func fetchallBags() {
         let db = Firestore.firestore()
-        db.collection("Bags").getDocuments { snapshot, error in
+        db.collection(Constatns.Bags.bagsCollectionPath).getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
             
             do {
                 let bagArray = try documents.compactMap({ try $0.data(as: Bag.self)})
-                self.bagSourceOfTruth? = bagArray
-                self.delegate?.successfullyLoadedData()
+                self.bagSourceOfTruth = bagArray
+                self.delegate?.successfullyLoadedData() // calling a function successfullyLoadedData 
                 print(bagArray)
             } catch {
               

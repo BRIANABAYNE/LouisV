@@ -8,6 +8,7 @@
 import FirebaseFirestore
 import Foundation
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 
 struct BagDetailViewModel {
@@ -48,6 +49,23 @@ struct BagDetailViewModel {
 //
 //
 //    }
+    
+    func saveImage(with image: UIImage) {
+        
+        // Convert the image to data
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
+        // Build
+        let storageRef = Storage.storage().reference()
+        
+        storageRef.child(Constatns.Images.imagePath).putData(imageData) { metaData, error in
+            if let error {
+                print("Something went wrong")
+                return
+            }
+            let imagePath = metaData?.path
+            print(imagePath)
+        }
+    }
     
     
     }
