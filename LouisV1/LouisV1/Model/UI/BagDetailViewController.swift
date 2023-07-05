@@ -29,13 +29,34 @@ class BagDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // calling 
-        viewModel = BagDetailViewModel()
-        
+        setUpImageView()
+        configureView()
     }
     
 
 // MARK: - Actions
+    
+    // MARK: - Methods
+    private func configureView() {
+        guard let bag = viewModel.bag else {return}
+        bagNameLabel.text = bag.name
+        bagPriceLabel.text = "\(bag.price)"
+        bagSeasonLabel.text = bag.season
+        bagLocationLabel.text = bag.location
+        bagGenderLabel.text = bag.gender
+    }
+    private func setUpImageView () {
+        bagDisplayImageView.isUserInteractionEnabled = true
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        bagDisplayImageView.addGestureRecognizer(tapGuesture)
+    }
+    @objc func imageViewTapped() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
+    }
     
     
     @IBAction func addBagButtonTapped(_ sender: Any) {
@@ -53,8 +74,15 @@ class BagDetailViewController: UIViewController {
         // Nil - Coalecing to unrwap the double
         let priceAsDouble = Double(price) ?? 0.0
         
-        viewModel.create(name: name, price: priceAsDouble, season: season, location: location, gender: gender)
-        viewModel.saveImage(with: image)
+        viewModel.create(name: name, price: priceAsDouble, season: season, location: location, gender: gender) { result in
+            switch result {
+            case .success(let docId):
+                self.viewModel.saveImage(with: image, to: docId)
+            case .failure(let failure):
+                print(failure.errorDescription)
+            }
+            
+        }
         navigationController?.popViewController(animated: true)
         
     }
@@ -62,4 +90,12 @@ class BagDetailViewController: UIViewController {
 } // end of the VC
 
 
-
+extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+        bagDisplayImageView.image = image
+        picker.dismiss(animated: true)
+    }
+}

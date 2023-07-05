@@ -17,6 +17,8 @@ protocol BagListViewModelDelegate: BagListTableViewController {
 
 class BagListViewModel {
     
+   
+    
     // MARK: - Property
     var bagSourceOfTruth: [Bag]?
     // Actual job req. This is their employee number when the are hired 2

@@ -63,7 +63,7 @@
                                     <outlet property="bagGenderLabel" destination="fkm-xC-UNi" id="gTL-sW-5b3"/>
                                     <outlet property="bagNameLabel" destination="J8z-ga-0yw" id="9Ne-pW-Tyq"/>
                                     <outlet property="bagPriceLabel" destination="l8V-W8-942" id="ZWl-p0-gez"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="EqA-hL-IsS"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toDetailVC" id="EqA-hL-IsS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -185,7 +185,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7ny-3E-Ofq"/>
+        <segue reference="EqA-hL-IsS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="IMG_2998" width="2316" height="3088"/>

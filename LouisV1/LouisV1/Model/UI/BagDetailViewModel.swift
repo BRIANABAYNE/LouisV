@@ -13,25 +13,42 @@ import FirebaseStorage
 
 struct BagDetailViewModel {
     
+    var bag: Bag?
+    
+    init(bag: Bag?) {
+        self.bag = bag
+    }
+    
     // Cred functions
-    func create(name: String, price: Double, season: String, location: String, gender: String) {
+    func create(name: String, price: Double, season: String, location: String, gender: String, handler: @escaping(Result<String,FirebaseError>) -> Void) {
         let sizeDict = Size(small: "Is Small", medium: "Is Medium", large: "Is Large")
         let colors = [Color (colorName: "Black"), Color(colorName:"Pink"), Color(colorName:"White")]
         let bag = Bag(name: name, price: price, season: season, location: location, gender: gender, collectionType: "Bags", size: sizeDict, colors: colors)
         
-        save(parameterBagName: bag)
+        save(parameterBagName: bag) { result in
+            switch result {
+            case .success(let docID):
+                handler(.success(docID))
+            case .failure(let failure):
+                print(failure)
+            }
+       
     }
+        
     
     // Method singnature
-    func save(parameterBagName: Bag) {
-        let ref = Firestore.firestore()
-        do {
-            try ref.collection(parameterBagName.collectionType).addDocument(from: parameterBagName)
-        } catch {
-            print("Oh Shit. Something went wrong", error.localizedDescription)
-            return
+        func save(parameterBagName: Bag, completion: @escaping (Result<String, FirebaseError>) -> Void) {
+            let ref = Firestore.firestore()
+            do {
+                let documentRef = try ref.collection(Constatns.Bags.bagsCollectionPath).addDocument(from: parameterBagName, completion: { _ in
+                })
+                
+                completion(.success(documentRef.documentID))
+            } catch {
+                print("Oh Shit. Something went wrong", error.localizedDescription)
+                return
+            }
         }
-
     }
     
     // Fetch single bag
@@ -50,14 +67,14 @@ struct BagDetailViewModel {
 //
 //    }
     
-    func saveImage(with image: UIImage) {
+    func saveImage(with image: UIImage, to docID: String) { // child is path to image per the docs 
         
         // Convert the image to data
         guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         // Build
         let storageRef = Storage.storage().reference()
         
-        storageRef.child(Constatns.Images.imagePath).putData(imageData) { metaData, error in
+        storageRef.child(Constatns.Images.imagePath).child(docID).putData(imageData) { metaData, error in
             if let error {
                 print("Something went wrong")
                 return

@@ -45,7 +45,20 @@ class BagListTableViewController: UITableViewController {
         return cell
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // IIDOO - ifentifer, indexpath, destination
+       guard let destination = segue.destination as? BagDetailViewController else {return}
+        // object to send
+        if segue.identifier == "toDetailVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            let bag = viewModel.bagSourceOfTruth?[indexPath.row]
+            destination.viewModel = BagDetailViewModel(bag: bag)
+        } else {
+                
+            destination.viewModel = BagDetailViewModel(bag: nil)
+        }
+
+    }
     
 } /// end of VC
 
