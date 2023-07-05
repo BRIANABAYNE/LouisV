@@ -31,6 +31,7 @@ class BagDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpImageView()
         configureView()
+       
     }
     
 
@@ -44,6 +45,8 @@ class BagDetailViewController: UIViewController {
         bagSeasonLabel.text = bag.season
         bagLocationLabel.text = bag.location
         bagGenderLabel.text = bag.gender
+        
+        viewModel.fetchImage(with: bag.id)
     }
     private func setUpImageView () {
         bagDisplayImageView.isUserInteractionEnabled = true
@@ -97,5 +100,13 @@ extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigation
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
         bagDisplayImageView.image = image
         picker.dismiss(animated: true)
+    }
+}
+
+extension BagDetailViewController: BagDetailViewModelDelegate {
+    func imageLoadedSuccessfully() {
+        DispatchQueue.main.async {
+            self.bagDisplayImageView.image = self.viewModel.image
+        }
     }
 }

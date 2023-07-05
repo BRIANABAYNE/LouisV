@@ -10,13 +10,21 @@ import Foundation
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
+protocol BagDetailViewModelDelegate: BagDetailViewController {
+    func imageLoadedSuccessfully() 
+}
 
-struct BagDetailViewModel {
+
+class BagDetailViewModel {
     
     var bag: Bag?
+    var image: UIImage?
+    weak var delegate: BagListViewModelDelegate?
     
-    init(bag: Bag?) {
+    init(bag: Bag?, injectedDelegate: BagDetailViewModelDelegate) {
         self.bag = bag
+        self.delegate = injectedDelegate
+        self.fetchImage(with: bag?.id)
     }
     
     // Cred functions
@@ -48,6 +56,23 @@ struct BagDetailViewModel {
                 print("Oh Shit. Something went wrong", error.localizedDescription)
                 return
             }
+        } // end of the save
+        
+        func fetchImage(with id: String) {
+            guard let id else { return }
+            let storageRef = Storage.storage().reference()
+            
+              storageRef.child(Constatns.Images.imagePath).child(id).getData(maxSize: 1024 * 1024) { result in
+                switch result {
+                case.success(let imageData):
+                    guard let image = UIImage(data: imageData) else { return }
+                    self.image = image
+                case.failure(let failure):
+                    print(failure.localizedDescription)
+            }
+                
+            }
+            // where are we trying to fetch the image from
         }
     }
     

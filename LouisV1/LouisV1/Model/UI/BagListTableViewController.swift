@@ -52,10 +52,10 @@ class BagListTableViewController: UITableViewController {
         if segue.identifier == "toDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             let bag = viewModel.bagSourceOfTruth?[indexPath.row]
-            destination.viewModel = BagDetailViewModel(bag: bag)
+            destination.viewModel = BagDetailViewModel(bag: bag, injectedDelegate: delegate)
         } else {
                 
-            destination.viewModel = BagDetailViewModel(bag: nil)
+            destination.viewModel = BagDetailViewModel(bag: nil, injectedDelegate: delegate )
         }
 
     }
