@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bhR-oT-S4i">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bag List Table View Controller-->
+        <scene sceneID="rW9-N9-vDb">
+            <objects>
+                <tableViewController id="bhR-oT-S4i" customClass="BagListTableViewController" customModule="LouisV1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Ir5-x6-y34">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bagCell" rowHeight="138" id="VuG-Uo-lLb" customClass="BagTableViewCell" customModule="LouisV1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="138"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VuG-Uo-lLb" id="ZOq-ew-BH7">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="138"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="127" translatesAutoresizingMaskIntoConstraints="NO" id="Ar5-jm-HPu">
+                                            <rect key="frame" x="28" y="23" width="337" height="20.333333333333329"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Bag Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8z-ga-0yw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="153.33333333333334" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkm-xC-UNi">
+                                                    <rect key="frame" x="280.33333333333331" y="0.0" width="56.666666666666686" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8V-W8-942">
+                                            <rect key="frame" x="50" y="55.333333333333343" width="123" height="41.666666666666657"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ar5-jm-HPu" firstAttribute="top" secondItem="ZOq-ew-BH7" secondAttribute="topMargin" constant="12" id="C6t-IW-vmB"/>
+                                        <constraint firstItem="l8V-W8-942" firstAttribute="top" secondItem="Ar5-jm-HPu" secondAttribute="bottom" constant="20" id="Lab-Jh-QrG"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ar5-jm-HPu" secondAttribute="trailing" constant="8" id="Vbu-P3-hBh"/>
+                                        <constraint firstItem="Ar5-jm-HPu" firstAttribute="leading" secondItem="ZOq-ew-BH7" secondAttribute="leadingMargin" constant="8" id="b41-eq-qz1"/>
+                                        <constraint firstItem="l8V-W8-942" firstAttribute="leading" secondItem="ZOq-ew-BH7" secondAttribute="leadingMargin" constant="30" id="oGG-A0-AAz"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="l8V-W8-942" secondAttribute="trailing" constant="200" id="rxI-td-D0M"/>
+                                        <constraint firstItem="l8V-W8-942" firstAttribute="top" secondItem="Ar5-jm-HPu" secondAttribute="bottom" constant="12" id="wWp-oB-GfO"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="l8V-W8-942" secondAttribute="bottom" constant="30" id="ya4-7N-qMb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="bagGenderLabel" destination="fkm-xC-UNi" id="gTL-sW-5b3"/>
+                                    <outlet property="bagNameLabel" destination="J8z-ga-0yw" id="9Ne-pW-Tyq"/>
+                                    <outlet property="bagPriceLabel" destination="l8V-W8-942" id="ZWl-p0-gez"/>
+                                    <segue destination="Lx2-oM-wOx" kind="show" identifier="toDetailVC" id="EqA-hL-IsS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bhR-oT-S4i" id="oRK-D6-KKy"/>
+                            <outlet property="delegate" destination="bhR-oT-S4i" id="2Uu-sw-Fx9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="hR4-o6-7yI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1hs-wx-ikl">
+                            <connections>
+                                <segue destination="Lx2-oM-wOx" kind="show" id="7ny-3E-Ofq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tck-lP-c2S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="177.86259541984731" y="-4.9295774647887329"/>
+        </scene>
+        <!--BagDetail-->
+        <scene sceneID="1fI-eY-zgq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BagDetail" id="Lx2-oM-wOx" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GaX-jp-xG5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2XE-I0-lh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967" y="-5"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EqA-hL-IsS"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
