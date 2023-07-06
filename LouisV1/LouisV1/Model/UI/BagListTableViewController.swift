@@ -43,6 +43,18 @@ class BagListTableViewController: UITableViewController {
         cell.configure(with: bag)
         
         return cell
+      
+    }
+    
+  
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // what editing is the user trying to do? deleting the row on the tableview. There is no function with just one row
+        if editingStyle == .delete {
+            //let bag = viewModel.bagSourceOfTruth?[indexPath.row]
+            //viewModel.delete(bag: bag!) // force upwrap to try it !
+            viewModel.delete(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade) // this can be different per what you want the UI to look like when they delete 
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

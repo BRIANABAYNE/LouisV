@@ -47,7 +47,7 @@ class BagDetailViewModel {
     
     
     // Method singnature
-    func save(parameterBagName: Bag, completion: @escaping (Result<String, FirebaseError>) -> Void) {
+    func save(parameterBagName: Bag, completion: @escaping (Result<String, FirebaseError>) -> Void) { // conceting image to data
         let ref = Firestore.firestore()
         do {
             let documentRef = try ref.collection(Constatns.Bags.bagsCollectionPath).addDocument(from: parameterBagName, completion: { _ in
@@ -69,6 +69,7 @@ class BagDetailViewModel {
             case.success(let imageData):
                 guard let image = UIImage(data: imageData) else { return }
                 self.image = image
+                self.delegate?.imageLoadedSuccessfully()
             case.failure(let failure):
                 print(failure.localizedDescription)
             }
@@ -83,16 +84,59 @@ class BagDetailViewModel {
         guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         // Build
         let storageRef = Storage.storage().reference()
+        // use this to be able to preview the image on the Storage Console
+        let uploadMetadata = StorageMetadata()
+        uploadMetadata.contentType = "image/jpeg"
+        // Storage Console ^
         
-        storageRef.child(Constatns.Images.imagePath).child(docID).putData(imageData) { metaData, error in
-            if let error {
-                print("Something went wrong")
-                return
+        
+        storageRef.child(Constatns.Images.imagePath).child(docID).putData(imageData, metadata: uploadMetadata) { result in
+            switch result {
+            case .success(let metaData):
+                let imagePath = metaData.path
+            case .failure(let failure):
+                print(failure.localizedDescription)
             }
-            let imagePath = metaData?.path
-            print(imagePath)
+
         }
+
+
+    } // end of save image
+    // with just makes it more readable/ updating the new properties
+    func updateBag( newName: String, newPrice: Double, newSeason: String, newLocation: String, newGender: String) {
+        // update the newPrice to be a double
+        
+        guard let bagToUPdate = self.bag else {return}
+        let updateBag = Bag(id: bagToUPdate.id, name: newName, price: newPrice, season: newSeason, location: newLocation, gender: newGender, collectionType: Constatns.Bags.bagsCollectionPath, size: bagToUPdate.size, colors: bagToUPdate.colors)
+    
+        // calling update the data base with that properyu
+        update(bag: updateBag)
+        
+        
     }
+    
+    func update(bag: Bag) {
+        if let documentID = bag.id {
+            let ref = Firestore.firestore() // PATH to fireplace
+           let docref = ref.collection(Constatns.Bags.bagsCollectionPath).document(documentID) // collection, document, collection , document
+            
+            do { // set the current data from the bag
+               try docref.setData(from: bag)
+            } catch {
+                print(error)
+                #warning("Handle your stupid errors. nerd")
+            }
+            // get the path, then can updat
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
 }
 
 // Fetch single bag

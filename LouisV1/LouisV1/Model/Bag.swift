@@ -10,14 +10,14 @@ import FirebaseFirestoreSwift
 
 struct Bag: Codable {
     @DocumentID var id: String? // 
-    let name: String
-    let price: Double
-    let season: String
-    let location: String
-    let gender: String
-    let collectionType: String 
-    let size: Size
-    let colors: [Color]
+    var name: String
+    var price: Double
+    var season: String
+    var location: String
+    var gender: String
+    var collectionType: String
+    var size: Size
+    var colors: [Color] 
 }
 
 struct Size: Codable {

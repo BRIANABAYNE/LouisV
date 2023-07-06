@@ -31,11 +31,12 @@ class BagDetailViewController: UIViewController {
         super.viewDidLoad()
         setUpImageView()
         configureView()
-       
+        
+        
     }
     
-
-// MARK: - Actions
+    
+    // MARK: - Actions
     
     // MARK: - Methods
     private func configureView() {
@@ -67,46 +68,54 @@ class BagDetailViewController: UIViewController {
         
         // Reading the data
         guard let name = bagNameLabel.text,
-        let season = bagSeasonLabel.text,
-        let price = bagPriceLabel.text,
-        let location = bagLocationLabel.text,
-        let gender = bagGenderLabel.text,
-        let image = bagDisplayImageView.image else {return}
+              let season = bagSeasonLabel.text,
+              let price = bagPriceLabel.text,
+              let location = bagLocationLabel.text,
+              let gender = bagGenderLabel.text,
+              let image = bagDisplayImageView.image else {return}
         
         
         // Nil - Coalecing to unrwap the double
         let priceAsDouble = Double(price) ?? 0.0
         
-        viewModel.create(name: name, price: priceAsDouble, season: season, location: location, gender: gender) { result in
-            switch result {
-            case .success(let docId):
-                self.viewModel.saveImage(with: image, to: docId)
-            case .failure(let failure):
-                print(failure.errorDescription)
+        if viewModel.bag != nil {
+            viewModel.updateBag(newName: name, newPrice: priceAsDouble, newSeason: season, newLocation: location, newGender: gender)
+            viewModel.saveImage(with: image, to: (viewModel.bag?.id)!)
+            
+        } else {
+            viewModel.create(name: name, price: priceAsDouble, season: season, location: location, gender: gender) { result in
+                switch result {
+                case .success(let docId):
+                    self.viewModel.saveImage(with: image, to: docId)
+                case .failure(let failure):
+                    print(failure.errorDescription)
+                }
+                
             }
             
-        }
+        } // end of if statment
+        
         navigationController?.popViewController(animated: true)
         
-    }
+        
+    } // end of add button tapped
     
-} // end of the VC
-
-
-extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-        bagDisplayImageView.image = image
-        picker.dismiss(animated: true)
-    }
 }
-
-extension BagDetailViewController: BagDetailViewModelDelegate {
-    func imageLoadedSuccessfully() {
-        DispatchQueue.main.async {
-            self.bagDisplayImageView.image = self.viewModel.image
+    extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            
+            
+            guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+            bagDisplayImageView.image = image
+            picker.dismiss(animated: true)
         }
     }
-}
+    
+    extension BagDetailViewController: BagDetailViewModelDelegate {
+        func imageLoadedSuccessfully() {
+            DispatchQueue.main.async {
+                self.bagDisplayImageView.image = self.viewModel.image
+            }
+        }
+    }
+
