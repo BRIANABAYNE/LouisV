@@ -20,7 +20,7 @@ class BagListTableViewController: UITableViewController {
         viewModel = BagListViewModel(injectedDelegate: self)  /// Will trigger next 2 - init a bagList Viewmodel - Cap is an actaul Data type () init
        // viewModel = BagListViewModel()
       //  viewModel.delegate = self // Hiring the delegate to do the job duties we need. 5
-       // viewModel.fetchallBags()
+//        viewModel.fetchallBags()
     }
     
     // MARK: - Table view data source

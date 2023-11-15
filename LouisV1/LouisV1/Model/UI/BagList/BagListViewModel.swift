@@ -65,7 +65,7 @@ class BagListViewModel {
         guard let bag = bagSourceOfTruth?[indexPath.row]  else { return }
         db.collection(Constatns.Bags.bagsCollectionPath).document(bag.id!).delete(completion:nil)
         bagSourceOfTruth?.remove(at: indexPath.row)
-    }
+    } // end of delete
     
     
     

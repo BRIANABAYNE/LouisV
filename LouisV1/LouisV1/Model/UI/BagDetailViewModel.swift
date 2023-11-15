@@ -131,29 +131,21 @@ class BagDetailViewModel {
         }
         
     }
-    
-    
-    
-    
-    
-    
 }
 
 // Fetch single bag
-//    func fetch(parmeterdocID: String) {
-//        let db = Firestore.firestore()
-//        let path = db.collection("Bags").document(parmeterdocID)
-//        path.getDocument(as:Bag.self) {result in
-//            switch result {
-//            case.success(let success):
-//                print(success.name)
-//            case.failure(let failure):
-//                print("",failure.localizedDescription)
-//            }
-//        }
-//
-//
-//    }
+    func fetch(parmeterdocID: String) {
+        let db = Firestore.firestore()
+        let path = db.collection("Bags").document(parmeterdocID)
+        path.getDocument(as:Bag.self) { result in
+            switch result {
+            case.success(let success):
+                print(success.name)
+            case.failure(let failure):
+                print("",failure.localizedDescription)
+            }
+        }
+    }
 
 
 

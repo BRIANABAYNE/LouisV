@@ -37,16 +37,3 @@ struct Color: Codable {
 
 
 
-//DatingApp
-//
-//let name:
-//let occupation:
-//let age:
-//let bio:
-//let location:
-//let genderPrefernces:
-//let typeOfRelationship:
-
-
-
-
