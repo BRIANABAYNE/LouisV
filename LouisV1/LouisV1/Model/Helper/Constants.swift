@@ -7,16 +7,6 @@
 
 import Foundation
 
-// KARL
-//struct Constants {
-//
-//    static let bagsCollectionPath = "Bags"
-//
-//}
-
-
-// MAX
-
 struct Constatns {
     
     struct Bags {
@@ -26,12 +16,10 @@ struct Constatns {
     struct Shoes {
         
         static let shoesCollectionPath = "Shoes"
-        
     }
     
     struct Images {
         static let imagePath = "Images"
     }
-    
     
 }

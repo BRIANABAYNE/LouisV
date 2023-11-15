@@ -9,18 +9,13 @@ import UIKit
 
 class BagListTableViewController: UITableViewController {
     
-    
     // MARK: - Properties
     var viewModel: BagListViewModel!
     
-    
     // MARK: - Lifecycles
-    override func viewDidLoad() { //// Will trigger first 1
+    override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = BagListViewModel(injectedDelegate: self)  /// Will trigger next 2 - init a bagList Viewmodel - Cap is an actaul Data type () init
-       // viewModel = BagListViewModel()
-      //  viewModel.delegate = self // Hiring the delegate to do the job duties we need. 5
-//        viewModel.fetchallBags()
+        viewModel = BagListViewModel(injectedDelegate: self)
     }
     
     // MARK: - Table view data source
@@ -29,59 +24,43 @@ class BagListTableViewController: UITableViewController {
         viewModel.fetchallBags()
     }
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return viewModel.bagSourceOfTruth?.count ?? 0
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bagCell", for: indexPath) as! BagTableViewCell
-        let bag = viewModel.bagSourceOfTruth?[indexPath.row] 
-        // Configure the cell... // will be doing this
+        let bag = viewModel.bagSourceOfTruth?[indexPath.row]
         cell.configure(with: bag)
-        
         return cell
-      
     }
     
-  
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // what editing is the user trying to do? deleting the row on the tableview. There is no function with just one row
         if editingStyle == .delete {
-            //let bag = viewModel.bagSourceOfTruth?[indexPath.row]
-            //viewModel.delete(bag: bag!) // force upwrap to try it !
             viewModel.delete(indexPath: indexPath)
-            tableView.deleteRows(at: [indexPath], with: .fade) // this can be different per what you want the UI to look like when they delete 
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // IIDOO - ifentifer, indexpath, destination
-       guard let destination = segue.destination as? BagDetailViewController else {return}
-        // object to send
+        guard let destination = segue.destination as? BagDetailViewController else {return}
         if segue.identifier == "toDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             let bag = viewModel.bagSourceOfTruth?[indexPath.row]
             destination.viewModel = BagDetailViewModel(bag: bag, injectedDelegate: destination )
         } else {
-                
+            
             destination.viewModel = BagDetailViewModel(bag: nil, injectedDelegate: destination)
         }
-
     }
-    
-} /// end of VC
+}
 
-// Posting the open job 3
+// MARK: - Extension
 extension BagListTableViewController: BagListViewModelDelegate {
-    // This job description 4
-    func successfullyLoadedData() { // Then this will run 
-        DispatchQueue.main.async { // ON THE MAIN THREAD
+    func successfullyLoadedData() {
+        DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
-    
 }

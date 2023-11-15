@@ -20,23 +20,16 @@ class BagDetailViewController: UIViewController {
     @IBOutlet weak var saveBagButton: UIButton!
     @IBOutlet weak var bagDisplayImageView: UIImageView!
     
+    // MARK: - Properties
     
-    // MARK: - Prperty
-    
-    // This is place holder
     var viewModel: BagDetailViewModel!
     
-    
+    // MARK: - Lifecyles
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpImageView()
         configureView()
-        
-        
     }
-    
-    
-    // MARK: - Actions
     
     // MARK: - Methods
     private func configureView() {
@@ -62,11 +55,9 @@ class BagDetailViewController: UIViewController {
         present(imagePicker, animated: true)
     }
     
-    
+    // MARK: - Actions
     @IBAction func addBagButtonTapped(_ sender: Any) {
         
-        
-        // Reading the data
         guard let name = bagNameLabel.text,
               let season = bagSeasonLabel.text,
               let price = bagPriceLabel.text,
@@ -74,8 +65,6 @@ class BagDetailViewController: UIViewController {
               let gender = bagGenderLabel.text,
               let image = bagDisplayImageView.image else {return}
         
-        
-        // Nil - Coalecing to unrwap the double
         let priceAsDouble = Double(price) ?? 0.0
         
         if viewModel.bag != nil {
@@ -93,29 +82,28 @@ class BagDetailViewController: UIViewController {
                 
             }
             
-        } // end of if statment
+        }
         
         navigationController?.popViewController(animated: true)
         
         
-    } // end of add button tapped
+    }
     
 }
-    extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            
-            
-            guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
-            bagDisplayImageView.image = image
-            picker.dismiss(animated: true)
-        }
+// MARK: - Extension
+extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
+        bagDisplayImageView.image = image
+        picker.dismiss(animated: true)
     }
-    
-    extension BagDetailViewController: BagDetailViewModelDelegate {
-        func imageLoadedSuccessfully() {
-            DispatchQueue.main.async {
-                self.bagDisplayImageView.image = self.viewModel.image
-            }
-        }
-    }
+}
 
+extension BagDetailViewController: BagDetailViewModelDelegate {
+    func imageLoadedSuccessfully() {
+        DispatchQueue.main.async {
+            self.bagDisplayImageView.image = self.viewModel.image
+        }
+    }
+}

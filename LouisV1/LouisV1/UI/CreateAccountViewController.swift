@@ -11,27 +11,23 @@ class CreateAccountViewController: UIViewController {
     
     
     // MARK: - Outlets
-    
     @IBOutlet weak var enterUserEmailLabel: UITextField!
     @IBOutlet weak var enterUserPasswordLabel: UITextField!
     @IBOutlet weak var enterUserPasswordConfirmLabel: UITextField!
     
-    
+    // MARK: - Properties
     var viewModel: CreateAccountViewModel!
     
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = CreateAccountViewModel()
-        // Do any additional setup after loading the view.
     }
-    
-    
     
     // MARK: - Actions
     
     @IBAction func signInButtonTapped(_ sender: Any) {
-        // Sing in
-        
+     
         guard let email = enterUserEmailLabel.text,
               let password = enterUserPasswordLabel.text,
               let confirmPassword = enterUserPasswordConfirmLabel.text else { return }
@@ -43,18 +39,5 @@ class CreateAccountViewController: UIViewController {
               let confirmPassword = enterUserPasswordConfirmLabel.text else {return}
         
         viewModel.createAccount(with: email, password: password, confirmPassword: confirmPassword)
-        
-    } // Create
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    }
 }

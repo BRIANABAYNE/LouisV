@@ -27,13 +27,8 @@ struct Size: Codable {
     var large: String
 }
 
-
 struct Color: Codable {
     
     var colorName: String
     
 }
-
-
-
-
