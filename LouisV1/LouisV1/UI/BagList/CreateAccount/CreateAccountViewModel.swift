@@ -21,11 +21,7 @@ func signIn(with email: String, password: String, confirmPassword: String ) {
     if password == confirmPassword {
         FirebaseService().signIn(email: email, password: password)
    
-        /// Create an ALERT
-        /// Account already exsit
-        /// You put in the wrong email
-        /// Write a resuable
 }
         
     }
-} // end of Model
+} 

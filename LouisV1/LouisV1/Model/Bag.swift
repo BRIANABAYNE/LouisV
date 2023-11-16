@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct Bag: Codable {
-    @DocumentID var id: String? // 
+    @DocumentID var id: String? 
     var name: String
     var price: Double
     var season: String

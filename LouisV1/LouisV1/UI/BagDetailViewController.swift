@@ -79,14 +79,10 @@ class BagDetailViewController: UIViewController {
                 case .failure(let failure):
                     print(failure.errorDescription)
                 }
-                
             }
-            
         }
         
         navigationController?.popViewController(animated: true)
-        
-        
     }
     
 }
@@ -99,6 +95,8 @@ extension BagDetailViewController: UIImagePickerControllerDelegate, UINavigation
         picker.dismiss(animated: true)
     }
 }
+
+// MARK: - Extension
 
 extension BagDetailViewController: BagDetailViewModelDelegate {
     func imageLoadedSuccessfully() {

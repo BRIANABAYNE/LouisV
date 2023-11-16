@@ -19,7 +19,6 @@ protocol BagDetailViewModelDelegate: AnyObject {
 
 class BagDetailViewModel {
     
-    
     // MARK: - Properties
     var bag: Bag?
     var image: UIImage?
@@ -110,7 +109,7 @@ class BagDetailViewModel {
     
     func update(bag: Bag) {
         if let documentID = bag.id {
-            let ref = Firestore.firestore() 
+            let ref = Firestore.firestore()
             let docref = ref.collection(Constatns.Bags.bagsCollectionPath).document(documentID) // collection, document, collection , document
             
             do {
